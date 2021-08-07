@@ -1,7 +1,7 @@
 //Variable Declarations
 var startBtn = $("#startBtn");
 var timerEl = $("#timer");
-var content = ".content";
+var content = $(".content");
 var questionNumber = $(".questionNumber");
 var questions = $(".questions");
 var displayQuestion = $(".displayQuestion");
@@ -57,9 +57,8 @@ startBtn.on("click", startTimer);
 
 function startTimer() {
   startBtn.remove();
+  showNext();
 }
-
-showNext();
 var timeInterval = setInterval(function () {
   if (timeLeft > 1) {
     timerEl.text(timeLeft);
@@ -67,7 +66,7 @@ var timeInterval = setInterval(function () {
   } else if (timeLeft === 1) {
     timerEl.text(timeLeft);
     timeLeft--;
-  } else {
+  } else if (timeLeft === 0 || counter === questionArray.length) {
     timerEl.text(0);
     clearInterval(timeInterval);
     timeIsOut();
@@ -107,6 +106,12 @@ function clickedAnswer() {
   } else {
     showNext();
   }
+}
+
+function timeIsOut() {
+  console.log("timeIsOut");
+  if (timeLeft >= 0 || questionArray.length >= 0) highScoreList.createText;
+  highScoreList.append(highScoreStorage);
 }
 
 function checkIfCorrect(correctAnswer) {
