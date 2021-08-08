@@ -6,7 +6,7 @@
 
 2. After organizing the Html i began to connect the html to the css and the js
 
-3.when constructing the css i madwe sure all the items were designed and aligned properly in their rightful positions
+3.when constructing the css i made sure all the items were designed and aligned properly in their rightful positions
 
 4. When styling the css i also made sure that the user experience was good in regards to the whole page matching with the same style
 
