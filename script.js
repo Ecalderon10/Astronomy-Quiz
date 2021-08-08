@@ -8,6 +8,7 @@ var displayQuestion = $(".displayQuestion");
 var answerList = $("#answerList");
 var highScoreList = $(".highScoreList");
 var highScoreStorage = $("highScoreStorage");
+var highScore = $(".highScore");
 
 var highScoreArray = [];
 
@@ -60,14 +61,9 @@ function startTimer() {
   showNext();
 }
 var timeInterval = setInterval(function () {
-  if (timeLeft > 1) {
-    timerEl.text(timeLeft);
-    timeLeft--;
-  } else if (timeLeft === 1) {
-    timerEl.text(timeLeft);
-    timeLeft--;
-  } else if (timeLeft === 0 || counter === questionArray.length) {
-    timerEl.text(0);
+  timeLeft--;
+  timerEl.text(timeLeft);
+  if (timeLeft === 0 || counter === questionArray.length) {
     clearInterval(timeInterval);
     timeIsOut();
   }
@@ -88,7 +84,7 @@ function showNext() {
       answerList.append(answerLi);
     }
   } else {
-    displayScore();
+    timeIsOut();
   }
 }
 
@@ -109,9 +105,11 @@ function clickedAnswer() {
 }
 
 function timeIsOut() {
-  console.log("timeIsOut");
-  if (timeLeft >= 0 || questionArray.length >= 0) highScoreList.createText;
-  highScoreList.append(highScoreStorage);
+  console.log("hello");
+  questionNumber.text("Final Score");
+  displayQuestion.remove();
+  answerList.remove();
+  highScore.text(timeLeft);
 }
 
 function checkIfCorrect(correctAnswer) {
