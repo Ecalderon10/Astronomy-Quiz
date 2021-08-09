@@ -6,11 +6,15 @@ var questionNumber = $(".questionNumber");
 var questions = $(".questions");
 var displayQuestion = $(".displayQuestion");
 var answerList = $("#answerList");
-var highScoreList = $(".highScoreList");
 var highScoreStorage = $("highScoreStorage");
 var highScore = $(".highScore");
-
 var highScoreArray = [];
+
+var highScoreList = document.getElementById("highScoreList");
+var userName = document.getElementById("username");
+var highScoreBtn = document.getElementById("highScoreBtn");
+var highScoreList = JSON.parse(localStorage.getItem("highScoreList")) || [];
+console.log(highScoreList);
 
 var timeInitial = 100;
 var timeLeft = timeInitial;
@@ -18,7 +22,6 @@ var counter = 0;
 var userScoreCorrect = 0;
 var userScoreIncorrect = 0;
 var resultsDisplayed = false;
-
 var questionArray = [
   {
     question:
@@ -105,12 +108,32 @@ function clickedAnswer() {
 }
 
 function timeIsOut() {
-  console.log("hello");
+  console.log("Hello");
   questionNumber.text("Final Score");
   displayQuestion.remove();
   answerList.remove();
   highScore.text(timeLeft);
 }
+
+highScoreList = (e) => {
+  console.log("clicked by save button");
+
+  e.preventDefault();
+
+  var score = {
+    score: Math.floor(Math.random) * 100,
+    name: userName.value,
+  };
+  highScore.push(score);
+  highScore.sort((a, b) => b.score - a.score);
+  highScore.splice(5);
+  localStorage.setItem("highScore", JSON.stringify(highScore));
+  console.log(highScore);
+};
+
+highScoreList.innerHtml = highScore.map((score) => {
+  return '<li class = "high-score"> ${score.name} - ${score.score}</li>';
+});
 
 function checkIfCorrect(correctAnswer) {
   return (

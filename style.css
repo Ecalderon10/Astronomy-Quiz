@@ -44,3 +44,7 @@
 .section {
   border: black;
 }
+
+.highScore {
+  padding-left: 100 px;
+}
